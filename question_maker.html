@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question-Maker</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <section class="container">
+        <p id="mk_question">Your Question?</p>
+        <input id="made_question" type="text" class="mk_question" placeholder="input your questions">
+        <p>Your Answers (please type correct answer in the first box.</p>
+        <input type="text" id="correct_answer" class="mk_question" placeholder="input correct answer">
+        <input type="text" id="wrong_answer1" class="mk_question" placeholder="input wrong answer1">
+        <input type="text" id="wrong_answer2" class="mk_question" placeholder="input wrong answer2">
+  
+        <div id="mk_btn" tabindex="0">Next</div>
+        <section id="complete" class="hidden">
+            <p></p>
+            <a href="" id="test_completed" class="hidden">Test Made!</a>
+        </section>
+    </section>
+
+
+
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- JQuery -->
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/question_maker.js"></script>
+
+</body>
+
+</html>
+</ul>
