@@ -6,22 +6,24 @@
             this.ctx = canvas.getContext("2d");
             this.width = canvas.width;
             this.height = canvas.height;
-            this.r = 80;
+            this.r = 20;
         }
 
         draw(angle) {
-            this.ctx.fillStyle = "rgba(255,255,255,0.3)";
+            this.ctx.fillStyle = "rgba(255,255,255,0.5)";
             this.ctx.fillRect(0, 0, this.width, this.height);
 
             this.ctx.save();
             this.ctx.translate(this.width / 2, this.height / 2);
+            // this.ctx.rotate();
             this.ctx.rotate(Math.PI / 180 * angle);
-
+            // this.ctx.rotate(angle*100);
             this.ctx.beginPath();
             this.ctx.moveTo(0, -this.r - 5);
             this.ctx.lineTo(0, -this.r + 5);
             this.ctx.strokeStyle = "orange";
             this.ctx.lineWidth = 6;
+            // this.ctx.filltext("Replay?", 10, 10);
             this.ctx.stroke();
             this.ctx.restore();
         }
