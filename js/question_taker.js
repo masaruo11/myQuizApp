@@ -3,29 +3,31 @@
 
 // let quizSet = < ? php echo json_encode($php_json_questionList); ? > ;
 // let quizSet = php_q_list;
-// console.log(test);
-console.log(text_txt);
-//FirebaseからデータをPULL
-// newQuestion.on("child_added", function (data) {
-//     let v = data.val();
-//     let k = data.key;
-//     console.log(v, "v", k, "k");
-//     // console.log("Previous Post ID: " + prevChildKey);
-//     // console.log(newPost.c, "Data Pull Time - C array")
-//     // console.log(snapshot, "snapshot");
-//     // console.log(newPost, "newPost");
-//     let qs = String(v.q);
+// alert(sample);
+console.log(sample);
+// // console.log(test_txt);
+let quizSet = question_list;
+FirebaseからデータをPULL
+newQuestion.on("child_added", function (data) {
+    let v = data.val();
+    let k = data.key;
+    console.log(v, "v", k, "k");
+    // console.log("Previous Post ID: " + prevChildKey);
+    // console.log(newPost.c, "Data Pull Time - C array")
+    // console.log(snapshot, "snapshot");
+    // console.log(newPost, "newPost");
+    let qs = String(v.q);
 
-//     let as = [];
-//     quizSet.push({
-//         q: v.q,
-//         c: v.c,
-//         // id:v.id,
-//     });
+    let as = [];
+    quizSet.push({
+        q: v.q,
+        c: v.c,
+        // id:v.id,
+    });
 
-// })
+})
 
-//FirebaseのChild_addedのイベントをトリガーするのに必要か？
+FirebaseのChild_addedのイベントをトリガーするのに必要か？
 console.log(quizSet, "contain check");
 
 quizSet.push({

@@ -10,7 +10,6 @@
 
 <body>
     <?php
-    // <script src="./js.question_taker.js"></script>
     try {
         // データベースのおまじない
         $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
@@ -33,22 +32,22 @@
                 break;
             }
             var_dump($rec);
-            $test_txt = "test from php";
-            $text = array(1,2,3);
-            $php_q_list = json_encode($rec);
+            $question_list = json_encode($rec);
         }
     } catch (Exception $e) {
         echo "ただいま障害によりデータベースへの登録ができません";
         exit();
     }
+    
+    $sample = "testfromphp";
     ?>
+    
     <script type="text/javascript">
-        let php_q_list = JSON.parse("<?php echo $php_q_list; ?>");
-        let test = JSON.parse("<?php echo $text;?>");
-        let test_txt = "<?php echo $test_txt?>";
+        let sample = "<?php echo $sample; ?>";
+        let question_list = JSON.parse("<?php echo $question_list;?>");
     </script>
 
-    <script type="text/javascript" src=".//MyQuizApp/js/question_taker.js"></script>
+    <script type="text/javascript" src="js/question_taker.js"></script>
 </body>
 
 </html>
