@@ -16,23 +16,7 @@ let max_num = 3;
 function mk_event() {
     mkbtn.addEventListener("click", () => {
         clickEnter();
-        // let answers = [];
-        // const made_question = made_questions.value;
-        // const correct_answer = correct_answers.value;
-        // const wrong_answer1 = wrong_answers1.value;
-        // const wrong_answer2 = wrong_answers2.value;
 
-        // answers.push(correct_answer, wrong_answer1, wrong_answer2)
-
-        // mk_question(made_question, answers, i);
-        // console.log(made_question, answers, "test");
-
-        // made_questions.value = "";
-        // made_questions.focus();
-        // correct_answers.value = "";
-        // wrong_answers1.value = "";
-        // wrong_answers2.value = "";
-        // i++;
     })
     mkbtn.addEventListener("keydown", (e)=>{
         if (e.keyCode === 13) {
@@ -77,11 +61,3 @@ function mk_question(qu, ans, ids) {
         id: ids,
     }, )
 }
-
-    // $("#mk_btn").on("keydown", function (e) {
-    //     console.log(e, "event");
-
-    //     if (e.keyCode === 13) {
-    //         ###
-    //         }
-    // })
