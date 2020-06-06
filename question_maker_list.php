@@ -45,6 +45,7 @@
     <script type="text/javascript">
         let sample = "<?php echo $sample; ?>";
         let question_list = JSON.parse("<?php echo $question_list;?>");
+        console.log(question_list);
     </script>
 
     <script type="text/javascript" src="js/question_taker.js"></script>
