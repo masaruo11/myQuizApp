@@ -48,7 +48,6 @@
         console.log(question_list);
     </script>
 
-    <script type="text/javascript" src="js/question_taker.js"></script>
-</body>
+    </body>
 
 </html>

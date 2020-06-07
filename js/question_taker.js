@@ -1,12 +1,8 @@
 "use strict ";
 //*********************<Test Taking>******************/
 
-// let quizSet = < ? php echo json_encode($php_json_questionList); ? > ;
-// let quizSet = php_q_list;
-// alert(sample);
-console.log(sample);
 // // console.log(test_txt);
-let quizSet = question_list;
+let quizSet = [];
 FirebaseからデータをPULL
 newQuestion.on("child_added", function (data) {
     let v = data.val();

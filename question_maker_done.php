@@ -48,10 +48,10 @@
         echo "ただいま障害によりデータベースへの登録ができません";
         exit();
     }
-
+    header('location: question_maker.html');
 
     ?>
-    <a href="./question_maker.html">BACK</a>
+    <!-- <a href="./question_maker.html">BACK</a> -->
 </body>
 
 </html>

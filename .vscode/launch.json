@@ -4,7 +4,11 @@
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        
+        {
+            "type": "firefox",
+            "request": "attach",
+            "name": "Attach"
+        },
         {
             "name": "Listen for XDebug",
             "type": "php",
