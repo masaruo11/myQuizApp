@@ -32,22 +32,28 @@
                 break;
             }
             var_dump($rec);
-            $question_list = json_encode($rec);
-        }
+            }
     } catch (Exception $e) {
         echo "ただいま障害によりデータベースへの登録ができません";
         exit();
     }
-    
-    $sample = "testfromphp";
     ?>
-    
-    <script type="text/javascript">
-        let sample = "<?php echo $sample; ?>";
-        let question_list = JSON.parse("<?php echo $question_list;?>");
-        console.log(question_list);
-    </script>
+    <section class="container">
+        <p id="mk_question">Your Question?</p>
+        <input id="made_question" name="question" type="text" class="mk_question" placeholder="input your questions">
+            <p>Your Answers (please type correct answer in the first box.)</p>
+            <input type="text" name="correct_answer" id="correct_answer" class="mk_question" placeholder="input correct answer">
+            <input type="text" name="wrong_answer1" id="wrong_answer1" class="mk_question" placeholder="input wrong answer1">
+            <input type="text" name="wrong_answer2" id="wrong_answer2" class="mk_question" placeholder="input wrong answer2">
+            <input type="submit" name="next" value="NEXT Question" id="mk_btn">
+            <input type="submit" name="finish" value="FINISH" id="mk_btn" onclick="location.href='./question_maker_list.php'">
+        </form>
+        <section id="complete" class="hidden">
+            <p></p>
+            <a href="" id="test_completed" class="hidden">Test Made!</a>
+        </section>
+    </section>
 
-    </body>
+</body>
 
 </html>

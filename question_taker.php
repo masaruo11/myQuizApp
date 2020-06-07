@@ -90,6 +90,7 @@
         let isAnswered;
         let score = 0;
 
+        //クイズをランダム化。最後のファイルと任意のファイルを入れ替えシャッフル化
         function shuffle(arr) {
             for (let i = arr.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
@@ -118,7 +119,7 @@
             btn.classList.remove("disabled");
         }
 
-        // クイズをランダムに表示
+        // クイズを表示
         function setQuiz() {
             isAnswered = false;
             console.log(quizSet, "quizset");
@@ -149,6 +150,7 @@
         console.log(quizSet.length, "length");
         setQuiz();
 
+        //NEXTボタンを押したときの挙動
         btn.addEventListener("click", () => {
             if (btn.classList.contains("disabled")) {
                 return;
@@ -157,7 +159,7 @@
 
             if (currentNum === quizSet.length - 1) {
                 // console.log(`Score:${score}/${quizSet.length}`);
-                scoreLabel.textContent = `Score:${score - 1}/${quizSet.length - 1}` //0スコアの時にマイナスかするのが問題
+                scoreLabel.textContent = `Score:${score - 1}/${quizSet.length}`
                 result.classList.remove("hidden");
             } else {
                 currentNum++;
