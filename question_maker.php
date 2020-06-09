@@ -9,6 +9,7 @@
 </head>
 
 <body>
+    <!-- 質問を作成し、question_maker_doneに渡す -->
     <section class="container">
         <p id="mk_question">Your Question?</p>
         <form action="./question_maker_done.php" method="post">

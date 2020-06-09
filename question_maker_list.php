@@ -10,6 +10,7 @@
 
 <body>
     <?php
+    // 質問と答えの一覧を表示
     try {
         // データベースのおまじない
         $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
@@ -24,36 +25,39 @@
 
         $dbh = null;
 
-        echo "list of questions";
-
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
             if ($rec == false) {
                 break;
             }
-            var_dump($rec);
+            //質問回答をリストとして出力
+            foreach ($rec as $key => $value) {
+                if ($key == "question") {
+                    echo '<section class="container">';
+                    echo '<form method ="get" action="./question_maker_edit.php">';
+                    // echo '<input type="radio" name="q_amend" value="'.$value.'">';
+                    // var_dump($value);
+                    echo $key . "=>" . $value;
+                    echo "</form>";
+                } else if ($key == "wrong_answer2") {
+                    echo $key . "=>" . $value;
+                    echo '<p>';
+                    echo '<input type="input" name="q_amend" value="' . $value . '">';
+                    echo '</p>';
+                    echo '<p>';
+                    echo '<input type="submit" value="Amend" id="mk_btn">';
+                    echo '</p>';
+                    echo '</section>';
+                } else {
+                    echo "<p>$key => $value</p>";
+                }
             }
+        }
     } catch (Exception $e) {
         echo "ただいま障害によりデータベースへの登録ができません";
         exit();
     }
     ?>
-    <section class="container">
-        <p id="mk_question">Your Question?</p>
-        <input id="made_question" name="question" type="text" class="mk_question" placeholder="input your questions">
-            <p>Your Answers (please type correct answer in the first box.)</p>
-            <input type="text" name="correct_answer" id="correct_answer" class="mk_question" placeholder="input correct answer">
-            <input type="text" name="wrong_answer1" id="wrong_answer1" class="mk_question" placeholder="input wrong answer1">
-            <input type="text" name="wrong_answer2" id="wrong_answer2" class="mk_question" placeholder="input wrong answer2">
-            <input type="submit" name="next" value="NEXT Question" id="mk_btn">
-            <input type="submit" name="finish" value="FINISH" id="mk_btn" onclick="location.href='./question_maker_list.php'">
-        </form>
-        <section id="complete" class="hidden">
-            <p></p>
-            <a href="" id="test_completed" class="hidden">Test Made!</a>
-        </section>
-    </section>
-
 </body>
 
 </html>
