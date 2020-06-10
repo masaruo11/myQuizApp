@@ -10,23 +10,25 @@
     <?php
 
     try {
-        $staff_code = $_POST["code"];
-        $staff_name = $_POST["name"];
-        $staff_pass = $_POST["pass"];
+        // XSS対策が必要
+        $id = $_POST["id"];
+        $question = $_POST["question"];
+        $correct_answer = $_POST["correct_answer"];
+        $wrong_answer1 = $_POST["wrong_answer1"];
+        $wrong_answer2 = $_POST["wrong_answer2"];
 
-        $staff_name = htmlspecialchars($staff_name, ENT_QUOTES, "UTF-8");
-        $staff_pass = htmlspecialchars($staff_pass, ENT_QUOTES, "UTF-8");
-
-        $dsn = "mysql:dbname=shop;host=localhost;charset=utf8";
+        $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
         $user = "root";
         $password = "";
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = "UPDATE mst_staff SET name=?,password=? WHERE code=?";
+        $sql = "UPDATE test SET question=?,correct_answer=?, wrong_answer1=?, wrong_answer2=? WHERE id=?";
         $stmt = $dbh->prepare($sql);
-        $data[] = $staff_name;
-        $data[] = $staff_pass;
-        $data[] = $staff_code;
+        $data[] = $question;
+        $data[] = $correct_answer;
+        $data[] = $wrong_answer1;
+        $data[] = $wrong_answer2;
+        $data[] = $id;
         $stmt->execute($data);
 
         $dbh = null;
@@ -35,7 +37,9 @@
         exit();
     }
     ?>
-    <a href="staff_list.php">BACK</a>
+    <section class="container">
+        <input type="button" value="Back to Question List" onclick="location.href='./question_maker_list.php'">
+    </section>
 </body>
 
 </html>

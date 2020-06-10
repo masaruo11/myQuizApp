@@ -19,7 +19,7 @@
         $dbh = new PDO($dsn, $user, $password);
         $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE 1";
+        $sql = "SELECT id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE 1";
         $stmt = $dbh->prepare($sql);
         $stmt->execute();
 
@@ -32,21 +32,20 @@
             }
             //質問回答をリストとして出力
             foreach ($rec as $key => $value) {
-                if ($key == "question") {
+                if ($key == "id") {
                     echo '<section class="container">';
-                    echo '<form method ="get" action="./question_maker_edit.php">';
-                    // echo '<input type="radio" name="q_amend" value="'.$value.'">';
-                    // var_dump($value);
+                    echo '<form method ="post" action="./question_maker_edit.php">';
                     echo $key . "=>" . $value;
-                    echo "</form>";
+                    // var_dump($key, $value);
                 } else if ($key == "wrong_answer2") {
                     echo $key . "=>" . $value;
                     echo '<p>';
-                    echo '<input type="input" name="q_amend" value="' . $value . '">';
+                    echo '<input type="hidden" name="q_amend" value="' . $rec["id"] . '">';
                     echo '</p>';
                     echo '<p>';
                     echo '<input type="submit" value="Amend" id="mk_btn">';
                     echo '</p>';
+                    echo "</form>";
                     echo '</section>';
                 } else {
                     echo "<p>$key => $value</p>";
