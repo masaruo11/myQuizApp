@@ -36,10 +36,9 @@
         echo "problem occured";
         exit();
     }
-    ?>
-    <section class="container">
-        <input type="button" value="Back to Question List" onclick="location.href='./question_maker_list.php'">
-    </section>
+    header("location:./question_maker_list.php")
+?>
+
 </body>
 
 </html>
