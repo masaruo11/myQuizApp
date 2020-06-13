@@ -7,7 +7,7 @@
         {
             "type": "firefox",
             "request": "attach",
-            "name": "Attach"
+            "name": "firefox_Attach"
         },
         {
             "name": "Listen for XDebug",
@@ -16,7 +16,7 @@
             "port": 9000
         },
         {
-            "name": "Launch currently open script",
+            "name": "firefox_Launch",
             "type": "php",
             "request": "launch",
             "program": "${file}",
