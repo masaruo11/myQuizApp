@@ -10,10 +10,8 @@
 
 <body>
     <?php
-    function h($value)
-    {
-        return htmlspecialchars($value, ENT_QUOTES, "UTF-8");
-    }
+    require("fancs.php");
+    $pdo = db_connect;
 
     if (isset($_POST["next"])){
         try {
@@ -23,14 +21,13 @@
             $wrong_answer2 = h($_POST["wrong_answer2"]);
     
             // データベースのおまじない
-            $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
-            $user = "root";
-            $password = "";
-            $dbh = new PDO($dsn, $user, $password);
-            $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-            $sql = "INSERT INTO test(question,correct_answer,wrong_answer1,wrong_answer2)VALUES(?,?,?,?)";
-            $stmt = $dbh->prepare($sql);
+            // $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
+            // $user = "root";
+            // $password = "";
+            // $dbh = new PDO($dsn, $user, $password);
+            // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmt=$pdo->prepare("INSERT INTO test(question,correct_answer,wrong_answer1,wrong_answer2) VALUES(
+                :q,:ca,:wa1,wa2)");
             $data[] = $question;
             $data[] = $correct_answer;
             $data[] = $wrong_answer1;
