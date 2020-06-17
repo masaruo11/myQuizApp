@@ -1,4 +1,5 @@
 <?php
+// これはお呪いとして使いまわし
 require("funcs.php");
 session_start();
 

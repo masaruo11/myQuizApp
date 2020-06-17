@@ -10,25 +10,30 @@
 
 <body>
     <?php
+    require("funcs.php");
+    session_start();
+    loginCheck();
+
+    $pdo = db_connect();
 
     try {
         //amend the question ordered by question maker list.php
-        $q_amend = $_POST["q_amend"];
+        $q_id = $_GET["q_id"];
         // var_dump($q_amend);
         // $q_amend = "where is the capital of China?";
-        $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
-        $user = "root";
-        $password = "";
-        $dbh = new PDO($dsn, $user, $password);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
+        // $user = "root";
+        // $password = "";
+        // $dbh = new PDO($dsn, $user, $password);
+        // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE id=?";
-        $stmt = $dbh->prepare($sql);
-        $data[] = $q_amend;
-        $stmt->execute($data);
+        $sql = "SELECT q_id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE :q_id";
+        $stmt = $pdo->prepare($sql);
+        bindInt($stmt,"q_id",$q_id);
+        $stmt->execute();
 
         $rec = $stmt->fetch(PDO::FETCH_ASSOC);
-        $id = $rec["id"];
+        $q_id = $rec["q_id"];
         $question = $rec["question"];
         $correct_answer = $rec["correct_answer"];
         $wrong_answer1 = $rec["wrong_answer1"];
@@ -42,8 +47,8 @@
     ?>
     <section class="container">
         <p id="mk_question">Your Question?</p>
-        <form method="post" action="./question_maker_edit_done.php">
-            <input name="id" type="hidden" value="<?php echo $id ?>">
+        <form method="get" action="./question_maker_edit_done.php">
+            <input name="q_id" type="hidden" value="<?php echo $q_id ?>">
             <input id="made_question" name="question" type="text" class="mk_question" value="<?php echo $question ?>">
             <p>Your Answers (please type correct answer in the first box.)</p>
             <input type="text" name="correct_answer" id="correct_answer" class="mk_question" value="<?php echo $correct_answer ?>">

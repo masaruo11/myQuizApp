@@ -10,20 +10,28 @@
 
 <body>
     <?php
+    require("funcs.php"); //! 関数機能の読込
+    session_start();
+    loginCheck();
+
+    $pdo = db_connect();
+
     // 質問と答えの一覧を表示
     try {
         // データベースのおまじない
-        $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
-        $user = "root";
-        $password = "";
-        $dbh = new PDO($dsn, $user, $password);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
+        // $user = "root";
+        // $password = "";
+        // $dbh = new PDO($dsn, $user, $password);
+        // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE 1";
-        $stmt = $dbh->prepare($sql);
+
+
+        $sql = "SELECT q_id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE 1";
+        $stmt = $pdo->prepare($sql);
         $stmt->execute();
-
-        $dbh = null;
+        // var_dump($stmt);
+        // $dbh = null;
 
         while (true) {
             $rec = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -32,15 +40,15 @@
             }
             //質問回答をリストとして出力
             foreach ($rec as $key => $value) {
-                if ($key == "id") {
+                if ($key == "q_id") {
                     echo '<section class="container">';
-                    echo '<form method ="post" action="./question_maker_edit.php">';
+                    echo '<form method ="get" action="./question_maker_edit.php">';
                     echo $key . "=>" . $value;
                     // var_dump($key, $value);
                 } else if ($key == "wrong_answer2") {
                     echo $key . "=>" . $value;
                     echo '<p>';
-                    echo '<input type="hidden" name="q_amend" value="' . $rec["id"] . '">';
+                    echo '<input type="hidden" name="q_id" value="' . $rec["q_id"] . '">';
                     echo '</p>';
                     echo '<p>';
                     echo '<input type="submit" value="Amend" id="mk_btn">';

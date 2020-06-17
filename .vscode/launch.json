@@ -19,30 +19,11 @@
             "webRoot": "${workspaceFolder}"
         },
         {
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "request": "attach",
-            "type": "pwa-msedge",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "firefox",
-            "request": "attach",
-            "name": "firefox_Attach"
-        },
-        {
             "name": "Listen for XDebug",
             "type": "php",
             "request": "launch",
             "port": 9000
         },
-        {
-            "name": "firefox_Launch",
-            "type": "php",
-            "request": "launch",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
-            "port": 9000
-        }
+      
     ]
 }

@@ -17,11 +17,11 @@ loginCheck();
 <body>
     <section class="container">
         <p id="question">Question maker / Question taker</p>
-            <div id="btn" class="index_btn">
-                <a href="./logout.php">ログアウト</a>
-            </div>
-        <div id="btn" class="index_btn"><a href="question_maker.php">Teacher - click here</a></div>
-        <div id="btn" class="index_btn"><a href="question_taker.php">Student - click here</a></div>      
+        <div id="btn" class="index_btn">
+            <a href="./logout.php">ログアウト</a>
+        </div>
+        <div id="btn" class="index_btn"><label for="teacher-click"><a href="question_maker.php" id="teacher-click">Teacher - click here</a></label></div>
+        <div id="btn" class="index_btn"><a href="question_taker.php" id="student-click">Student - click here</a></div>
     </section>
 </body>
 
