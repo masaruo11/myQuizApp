@@ -38,6 +38,7 @@
             if ($rec == false) {
                 break;
             }
+            echo '<div id="logout"><a href="./logout.php">ログアウト</a></div>';
             //質問回答をリストとして出力
             foreach ($rec as $key => $value) {
                 if ($key == "q_id") {
@@ -52,6 +53,8 @@
                     echo '</p>';
                     echo '<p>';
                     echo '<input type="submit" value="Amend" id="mk_btn">';
+                    // echo '<input type="submit" value="Delete" id="mk_btn">';
+                    // echo '<input type="submit" value="Return to Top" id="mk_btn" onClick="location.href=`./index.html`">';
                     echo '</p>';
                     echo "</form>";
                     echo '</section>';

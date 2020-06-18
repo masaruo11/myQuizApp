@@ -1,0 +1,12 @@
+テストの作成とテストを受ける機能を実装
+
+ログイン機能（今回はこちらを実装）
+index.html->login.php->login_act.php / logoutでログイン機能
+index.html->user_registration.php->user_registration_act.php で新規ユーザー登録
+
+テスト作成機能
+index.html->login.php->question_maker.php-><Create Next Question>で問題作成
+index.html->login.php->question_maker.php-><List All your questions>で問題一覧->それぞれの質問の変更機能
+
+テスト受ける機能
+index.html->login.php-><student>question_taker.php

@@ -10,17 +10,17 @@
 
 <body>
     <section class="container">
-        <p id="mk_question">Please login before making your questions</p>
-        <form method="post" action="./login_act.php">
-            <!-- <input name="id" type="hidden" value=""> -->
+        <p id="mk_question">Your details to register</p>
+        <form method="post" action="./user_registration_act.php">
+            <!-- <input name="id" type="hidden" value="#"> -->
+            <p>Your Name</p>
+            <input id="made_question" name="user_name" type="text" class="mk_question" placeholder="user name">
             <p>Your Email</p>
             <input id="made_question" name="user_email" type="text" class="mk_question" placeholder="user email">
             <p>Your Password</p>
             <input type="password" name="user_password" id="correct_answer" class="mk_question" placeholder="password">
             <input type="submit" value="FINISH" id="mk_btn">
         </form>
-        <br>
-        <input type="submit" value="User Registration" id="mk_btn" onclick="location.href='./user_registration.php'">
     </section>
 </body>
 

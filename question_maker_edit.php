@@ -27,7 +27,7 @@
         // $dbh = new PDO($dsn, $user, $password);
         // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT q_id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE :q_id";
+        $sql = "SELECT q_id,question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE q_id=:q_id";
         $stmt = $pdo->prepare($sql);
         bindInt($stmt,"q_id",$q_id);
         $stmt->execute();
@@ -54,7 +54,8 @@
             <input type="text" name="correct_answer" id="correct_answer" class="mk_question" value="<?php echo $correct_answer ?>">
             <input type="text" name="wrong_answer1" id="wrong_answer1" class="mk_question" value="<?php echo $wrong_answer1 ?>">
             <input type="text" name="wrong_answer2" id="wrong_answer2" class="mk_question" value="<?php echo $wrong_answer2 ?>">
-            <input type="submit" value="FINISH" id="mk_btn">
+            <input type="submit" value="FINISH" name="FINISH" id="mk_btn">
+            <!-- <input type="submit" value="DELETE" id="mk_btn"> -->
         </form>
     </section>
 

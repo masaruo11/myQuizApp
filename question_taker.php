@@ -10,19 +10,24 @@
 
 <body>
     <?php
+    require("funcs.php"); //! 関数機能の読込
+    session_start();
+    loginCheck();
+    $pdo = db_connect();
+    // var_dump($_SESSION);
     try {
         //データベースのおまじない
-        $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
-        $user = "root";
-        $password = "";
-        $dbh = new PDO($dsn, $user, $password);
-        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        // $dsn = "mysql:dbname=test_maker;host=localhost;charset=utf8";
+        // $user = "root";
+        // $password = "";
+        // $dbh = new PDO($dsn, $user, $password);
+        // $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         $sql = "SELECT question,correct_answer,wrong_answer1,wrong_answer2 FROM test WHERE 1";
-        $stmt = $dbh->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
-        $dbh = null;
+        // $dbh = null;
         //DBからデータを取り出し、JSに渡すための変数に格納
         // echo "list of questions";
         $question_list = [];
@@ -46,16 +51,17 @@
     ?>
 
     <section class="container">
-
-        <p id="question"></p>
-        <ul id="choices"></ul>
-        <div id="btn" class="disabled">Next</div>
-        <section id="result" class="hidden">
-            <p></p>
-            <a href="">Replay?</a>
-            <canvas width="300" height="50">
-                Canvas not supported.
-            </canvas>
+        
+             
+            <p id="question"></p>
+            <ul id="choices"></ul>
+            <div id="btn" class="disabled">Next</div>
+            <section id="result" class="hidden">
+                <p></p>
+                <a href="">Replay?</a>
+                <canvas width="300" height="50">
+                    Canvas not supported.
+                </canvas>
         </section>
     </section>
     <!-- //*********************<Test Taking>******************/ -->
@@ -104,6 +110,9 @@
 
             //正誤判定
             function checkAnswer(li) {
+                sessionStorage.setItem("question", quizSet[currentNum].q);
+                sessionStorage.setItem("correct_answer", quizSet[currentNum].c[0]);
+
                 if (isAnswered) {
                     return;
                 }
@@ -112,9 +121,15 @@
                 if (li.textContent === quizSet[currentNum].c[0]) {
                     li.classList.add("correct");
                     score++;
+                    sessionStorage.setItem("answer", li.textContent);
+                    sessionStorage.setItem("flag", 1);
+
+
                 } else {
                     // console.log("wrong");
                     li.classList.add("wrong");
+                    sessionStorage.setItem("answer", li.textContent);
+                    sessionStorage.setItem("flag", 0);
                 }
 
                 btn.classList.remove("disabled");
@@ -168,7 +183,24 @@
                 }
             })
         }
+        // XMLHttpRequestでPHPに変数を渡そうとしたが・・・
+        // if (window.XMLHttpRequest) {
+        //     xmlhttp = new XMLHttpRequest();
+        // } else {
+        //     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        // }
+
+        // var PageToSendTo = "question_taker_done.php";
+        // var MyVariable = "variableData";
+        // var VariablePlaceholder = "variableName=";
+        // var UrlToSend = PageToSendTo + VariablePlaceholder + MyVariable;
+
+        // xmlhttp.open("GET", UrlToSend, false);
+        // xmlhttp.send();
     </script>
+
+
+
     <script src="js/canvas.js"></script>
 
 </body>

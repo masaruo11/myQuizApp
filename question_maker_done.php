@@ -16,7 +16,7 @@
 
     $pdo = db_connect();
 
-    if (isset($_GET["next"])) {
+    if (isset($_GET["FINISH"])) {
         try {
             $question = $_GET["question"];
             $correct_answer = $_GET["correct_answer"];
