@@ -13,7 +13,7 @@
     require("funcs.php"); //! 関数機能の読込
     session_start();
     loginCheck();
-
+    echo '<div id="logout"><a href="./logout.php">ログアウト</a></div>';
     $pdo = db_connect();
 
     // 質問と答えの一覧を表示
@@ -38,7 +38,7 @@
             if ($rec == false) {
                 break;
             }
-            echo '<div id="logout"><a href="./logout.php">ログアウト</a></div>';
+            // echo '<div id="logout"><a href="./logout.php">ログアウト</a></div>';
             //質問回答をリストとして出力
             foreach ($rec as $key => $value) {
                 if ($key == "q_id") {
