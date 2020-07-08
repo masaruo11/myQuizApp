@@ -4,19 +4,11 @@
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Launch Chrome",
+ {
+            "type": "chrome",
             "request": "launch",
-            "type": "pwa-chrome",
-            "url": "http://localhost:5050",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "request": "attach",
-            "type": "pwa-chrome",
-            "webRoot": "${workspaceFolder}"
+            "name": "Launch Chrome",
+            "file": "${file}"
         },
         {
             "name": "Listen for XDebug",

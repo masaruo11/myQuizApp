@@ -164,26 +164,25 @@
                 return;
             }
             btn.classList.add("disabled");
-            //START 回答をDBに格納
-            document.getElementById("question_r").value = sessionStorage.getItem("question");
-            document.getElementById("correct_answer_r").value = sessionStorage.getItem("correct_answer");
-            document.getElementById("answer_r").value = sessionStorage.getItem("answer");
-            // document.getElementById("answer_db_connect").submit();
-            //!フォームデータをPHPにFETCHでPUSH
-            const myForm = document.getElementById("answer_db_connect");
+            //!フォームデータをPHPにFETCHでPUSH(AJAX)
             const url = "./question_taker_done.php";
             
-            myForm.addEventListener("submit", function(e) {
-                e.preventDefault();
-    
-                const formData = new FormData(this);
-                fetch(url, {
-                    method: "GET",
-                    body: formData,
-                }).then(function(response) {
-                    return response.text();
-                }).then(function(text) {
-                    console.log(text);
+            const formData = new FormData(this);
+            fetch(url, {
+                method: "GET",
+                body: formData,
+            }).then(function(response) {
+                return response.text();
+            }).then(function(text) {
+                // console.log(text);
+                //START 回答をDBに格納
+                const myForm = document.getElementById("answer_db_connect");
+                    myForm.addEventListener("submit", function(e) {
+                    e.preventDefault();
+                    document.getElementById("question_r").value = sessionStorage.getItem("question");
+                    document.getElementById("correct_answer_r").value = sessionStorage.getItem("correct_answer");
+                    document.getElementById("answer_r").value = sessionStorage.getItem("answer");
+                    // document.getElementById("answer_db_connect").submit();
                 }).catch(function(error) {
                     console.error(error);
                 })
